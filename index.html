@@ -32,13 +32,19 @@
   <div class="overlay">
     <div class="overlay-panel left">
       <h2>Welcome Back!</h2><br>
-      <p>Already have an account?</p><br>
+      <p class="switch">
+  Already have an account?
+  <span onclick="showLogin()">Sign in</span>
+</p><br>
       <button id="loginBtn">Sign In</button><br>
     </div><br>
 
     <div class="overlay-panel right">
       <h2>Hello, Friend!</h2><br>
-      <p>New here? Create account</p><br>
+<p class="switch">
+  Don’t have an account? create account 
+  <span onclick="showSignup()">Sign up</span>
+</p><br>
       <button id="signupBtn">Sign Up</button><br>
     </div><br>
   </div>
