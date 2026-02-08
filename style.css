@@ -100,3 +100,29 @@ body {
 .container.active .sign-in {
   opacity: 1;
 }
+@media (max-width: 600px) {
+
+  body {
+    padding: 10px;
+  }
+
+  .container {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .form {
+    width: 100%;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  input, button {
+    font-size: 16px;
+    padding: 12px;
+  }
+}
