@@ -66,8 +66,8 @@ body {
 .overlay-panel {
   position: absolute;
   width: 100%;
-  height: 100%;
-  padding: 40px;
+  height: 200%;
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -93,5 +93,5 @@ body {
 }
 
 .container.active .sign-in {
-  opacity: 0;
+  opacity: 1;
 }
