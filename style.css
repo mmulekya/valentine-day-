@@ -88,6 +88,19 @@ body {
   cursor: pointer;
 }
 
+.switch {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.switch span {
+  color: orange;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
 /* ACTIVE MODE */
 .container.active .overlay {
   transform: translateX(-100%);
