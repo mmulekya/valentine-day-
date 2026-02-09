@@ -14,17 +14,17 @@ body {
 .container {
   background: #fff;
   border-radius: 10px;
-  width: 95%;
+  width: 100%;
   max-width: 800px;
   min-height: 420px;
-  height: auto;
+  height: 100%;
   position: relative;
   overflow: hidden;
 
 }
 
-.form {.form {
-  width: 100%;
+.form {
+  width: 50%;
   max-width: 400px;
   margin: auto;
   position: absolute;
