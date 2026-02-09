@@ -139,3 +139,12 @@ body {
     padding: 12px;
   }
 }
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+
+  .container {
+    border-radius: 0;
+  }
+}
