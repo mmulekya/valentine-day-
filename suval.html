@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suzie ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+  <p>💌 Tap to Continue 💌</p>
+</div>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="valentine.mp3" type="audio/mpeg">
+</audio>
+
+<!-- HEARTS -->
+<div class="hearts"></div>
+
+<!-- FIREWORKS TEXT -->
+<div class="firework-text hidden" id="fireworkText">
+  SUZAN <span>❤️</span>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="container hidden" id="mainContent">
+  <div class="card">
+
+    <h2 class="names">SUZAN <span>&</span> MARTIN</h2>
+
+    <img src="IMG19.jpg" alt="Suzan" class="photo" />
+
+    <h1>Happy Valentine’s Day ❤️</h1>
+
+    <p class="message" id="typedMessage"></p>
+
+  </div>
+</div>
+
+<script>
+const intro = document.getElementById("intro");
+const main = document.getElementById("mainContent");
+const music = document.getElementById("bgMusic");
+const fireText = document.getElementById("fireworkText");
+
+/* Tap to continue */
+intro.addEventListener("click", () => {
+  intro.style.display = "none";
+  main.classList.remove("hidden");
+  music.play();
+  startTyping();
+  startHearts();
+  setTimeout(showFireText, 5000);
+}, { once: true });
+
+/* Typing effect */
+const text = `Suzan,
+
+From the moment you came into my life, everything felt softer,
+brighter, and more meaningful. Your smile brings calm,
+your presence brings warmth, and your heart brings peace.
+
+On this Valentine’s Day, I want you to know that you are cherished,
+admired, and deeply special to me.
+
+With love always,
+— Martin 💕`;
+
+let i = 0;
+function startTyping() {
+  const el = document.getElementById("typedMessage");
+  const speed = 35;
+  const timer = setInterval(() => {
+    el.textContent += text.charAt(i);
+    i++;
+    if (i >= text.length) clearInterval(timer);
+  }, speed);
+}
+
+/* Floating hearts */
+function startHearts() {
+  const hearts = document.querySelector(".hearts");
+  setInterval(() => {
+    const heart = document.createElement("span");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = 4 + Math.random() * 3 + "s";
+    hearts.appendChild(heart);
+    setTimeout(() => heart.remove(), 7000);
+  }, 500);
+}
+
+/* Fireworks text */
+function showFireText() {
+  fireText.classList.remove("hidden");
+  fireText.classList.add("explode");
+}
+</script>
+
+</body>
+</html>
