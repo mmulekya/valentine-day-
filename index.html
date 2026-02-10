@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login / Signup</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* MAIN CONTAINER */
+.container {
+  width: 90%;
+  max-width: 900px;
+  height: 520px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 30px 60px rgba(0,0,0,.3);
+}
+
+/* FORMS */
+.forms {
+  width: 200%;
+  height: 100%;
+  display: flex;
+  transition: transform .6s ease;
+}
+
+.container.signup .forms {
+  transform: translateX(-50%);
+}
+
+.form {
+  width: 50%;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.form input {
+  margin-bottom: 15px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.form button {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 30px;
+  border: none;
+  background: #2575fc;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* OVERLAY */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(135deg, #ff8a00, #ff4e00);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+  transition: transform .6s ease;
+}
+
+.container.signup .overlay {
+  transform: translateX(-100%);
+}
+
+.overlay h2 {
+  margin-bottom: 10px;
+}
+
+.overlay p {
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.overlay button {
+  padding: 12px 30px;
+  border-radius: 30px;
+  border: none;
+  background: #fff;
+  color: #ff4e00;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .container {
+    height: 100vh;
+    border-radius: 0;
+  }
+
+  .overlay {
+    display: none;
+  }
+
+  .forms {
+    width: 200%;
+  }
+
+  .form {
+    width: 100%;
+  }
+
+  .container.signup .forms {
+    transform: translateX(-50%);
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="container">
+
+  <div class="forms">
+
+    <!-- SIGN IN -->
+    <div class="form">
+      <h2>Sign In</h2>
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button>Login</button>
+    </div>
+
+    <!-- SIGN UP -->
+    <div class="form">
+      <h2>Sign Up</h2>
+      <input type="text" placeholder="Username">
+      <input type="email" placeholder="Email">
+      <input type="password" placeholder="Password">
+      <button>Create Account</button>
+    </div>
+
+  </div>
+
+  <!-- OVERLAY -->
+  <div class="overlay">
+    <div>
+      <h2>Welcome ❤️</h2>
+      <p>Swipe or tap below to switch</p>
+      <button id="toggle">Switch</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const container = document.getElementById("container");
+const toggle = document.getElementById("toggle");
+
+toggle.onclick = () => {
+  container.classList.toggle("signup");
+};
+
+/* SWIPE SUPPORT */
+let startX = 0;
+
+container.addEventListener("touchstart", e => {
+  startX = e.touches[0].clientX;
+});
+
+container.addEventListener("touchend", e => {
+  const endX = e.changedTouches[0].clientX;
+  if (startX - endX > 50) container.classList.add("signup");
+  if (endX - startX > 50) container.classList.remove("signup");
+});
+</script>
+
+</body>
+</html>
