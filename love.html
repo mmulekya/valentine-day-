@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzan & Martin ❤️</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-family: "Segoe UI", sans-serif;
+  animation: bgRotate 30s infinite linear;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+/* Rotating background photos */
+@keyframes bgRotate {
+  0%   { background-image: url("IMG19.jpg"); }
+  33%  { background-image: url("IMG20.jpg"); }
+  66%  { background-image: url("IMG21.jpg"); }
+  100% { background-image: url("IMG19.jpg"); }
+}
+
+.overlay {
+  height: 100%;
+  background: rgba(0,0,0,.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.poem-card {
+  max-width: 420px;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(14px);
+  border-radius: 26px;
+  padding: 32px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 35px 70px rgba(255,105,180,.4);
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px); }
+}
+
+.poem-card h1 {
+  color: #ff9ecf;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+  animation: glow 3s infinite;
+}
+
+@keyframes glow {
+  50% { text-shadow: 0 0 14px #ff7bbf; }
+}
+
+.poem {
+  font-size: 1rem;
+  line-height: 1.8;
+  white-space: pre-line;
+  min-height: 260px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="overlay">
+  <div class="poem-card">
+    <h1>Suzan & Martin ❤️</h1>
+    <div class="poem" id="poem"></div>
+  </div>
+</div>
+
+<script>
+const poemText = `
+In every quiet moment, your name appears,
+Written in love, whispered through years.
+
+Suzan, your smile is my safest place,
+My calm, my strength, my sweetest grace.
+
+With every heartbeat, my promise stays true,
+This love, this life — I choose you.
+
+Through every sunrise, through stars above,
+Forever yours, in endless love.
+
+— Martin 💕
+`;
+
+let index = 0;
+const speed = 45;
+const poemEl = document.getElementById("poem");
+
+function typePoem() {
+  if (index < poemText.length) {
+    poemEl.textContent += poemText.charAt(index);
+    index++;
+    setTimeout(typePoem, speed);
+  }
+}
+
+typePoem();
+</script>
+
+</body>
+</html>
