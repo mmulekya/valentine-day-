@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzan ❤️ Martin</title>
+
+<!-- ICONS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(135deg,#ff4e8a,#ff9a9e);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    overflow:hidden;
+}
+
+/* ===== TOP RIGHT NAVIGATION ===== */
+.nav-container{
+    position:absolute;
+    top:20px;
+    right:20px;
+}
+
+.nav{
+    display:flex;
+    background:rgba(255,255,255,0.15);
+    backdrop-filter:blur(10px);
+    padding:10px 20px;
+    border-radius:50px;
+    gap:20px;
+}
+
+.nav a{
+    position:relative;
+    color:white;
+    font-size:20px;
+    text-decoration:none;
+    width:45px;
+    height:45px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    transition:0.4s;
+}
+
+.nav a:hover{
+    background:white;
+    color:#ff3f7f;
+    transform:scale(1.1);
+}
+
+/* Tooltip */
+.nav a span{
+    position:absolute;
+    bottom:-35px;
+    background:white;
+    color:#ff3f7f;
+    padding:5px 15px;
+    border-radius:20px;
+    font-size:12px;
+    opacity:0;
+    transition:0.3s;
+}
+
+.nav a:hover span{
+    opacity:1;
+}
+
+/* ===== CENTER CONTENT ===== */
+.container{
+    text-align:center;
+    max-width:400px;
+    padding:20px;
+}
+
+h1{
+    font-size:2.5rem;
+    margin-bottom:10px;
+    animation:fadeIn 2s ease;
+}
+
+.subtitle{
+    font-size:1rem;
+    opacity:0.9;
+    margin-bottom:30px;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(-20px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+/* Floating hearts */
+.heart{
+    position:absolute;
+    color:white;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    from{transform:translateY(100vh); opacity:1;}
+    to{transform:translateY(-10vh); opacity:0;}
+}
+
+footer{
+    position:absolute;
+    bottom:15px;
+    font-size:12px;
+    opacity:0.8;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Navigation Top Right -->
+<div class="nav-container">
+    <div class="nav">
+        <a href="Suzie.html">
+            <i class="fa-solid fa-heart"></i>
+            <span>Love Intro</span>
+        </a>
+        <a href="love.html">
+            <i class="fa-solid fa-feather"></i>
+            <span>Poem</span>
+        </a>
+    </div>
+</div>
+
+<!-- Center Content -->
+<div class="container">
+    <h1>💖 Suzan & Martin 💖</h1>
+    <div class="subtitle">
+        A Beautiful Valentine Experience
+    </div>
+</div>
+
+<footer>
+    Made with ❤️ by Martin for Suzan
+</footer>
+
+<!-- Floating Hearts Script -->
+<script>
+function createHeart(){
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 3 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{heart.remove()},6000);
+}
+
+setInterval(createHeart,800);
+</script>
+
+</body>
+</html>
