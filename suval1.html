@@ -152,6 +152,22 @@ h1{
 </div>
 
 <script>
+/* ===== TAP TO START ===== */
+const intro=document.getElementById("intro");
+const main=document.getElementById("mainContent");
+const music=document.getElementById("bgMusic");
+const fireText=document.getElementById("fireText");
+
+intro.addEventListener("click",()=>{
+  intro.style.display="none";
+  main.classList.remove("hidden");
+  music.play();
+  startTyping();
+  startHearts();
+  setTimeout(()=>{fireText.classList.add("show");},5000);
+},{once:true});
+
+
 
 /* =========================
    TYPEWRITER LOVE MESSAGE
