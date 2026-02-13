@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzan ❤️ Martin</title>
+
+<style>
+
+/* ===== RESET ===== */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    overflow:hidden;
+    color:white;
+}
+
+/* ===== FULLSCREEN SLIDESHOW ===== */
+.slideshow{
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-2;
+}
+
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background-size:cover;
+    background-position:center;
+    opacity:0;
+    animation:fadeSlide 25s infinite;
+}
+
+.slide:nth-child(1){background-image:url("IMG19.jpg"); animation-delay:0s;}
+.slide:nth-child(2){background-image:url("IMG20.jpg"); animation-delay:5s;}
+.slide:nth-child(3){background-image:url("IMG21.jpg"); animation-delay:10s;}
+.slide:nth-child(4){background-image:url("IMG22.jpg"); animation-delay:15s;}
+.slide:nth-child(5){background-image:url("IMG23.jpg"); animation-delay:20s;}
+
+@keyframes fadeSlide{
+    0%{opacity:0;}
+    10%{opacity:1;}
+    30%{opacity:1;}
+    40%{opacity:0;}
+    100%{opacity:0;}
+}
+
+/* ===== DARK OVERLAY ===== */
+.overlay{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.45);
+    z-index:-1;
+}
+
+/* ===== CENTER CONTENT ===== */
+.content{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    text-align:center;
+    padding:20px;
+}
+
+h1{
+    font-size:38px;
+    text-shadow:0 0 15px pink;
+}
+
+.message{
+    margin-top:20px;
+    font-size:20px;
+    max-width:600px;
+    line-height:1.6;
+}
+
+/* ===== SPARKLES ===== */
+.sparkle{
+    position:fixed;
+    width:6px;
+    height:6px;
+    background:white;
+    border-radius:50%;
+    pointer-events:none;
+    animation:floatUp linear forwards;
+}
+
+@keyframes floatUp{
+    from{
+        transform:translateY(0);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-120vh);
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== SLIDESHOW ===== -->
+<div class="slideshow">
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+</div>
+
+<div class="overlay"></div>
+
+<!-- ===== MUSIC ===== -->
+<audio id="music" autoplay loop>
+    <source src="suzan-martin.mp3" type="audio/mp3">
+</audio>
+
+<!-- ===== CONTENT ===== -->
+<div class="content">
+    <h1>SUZAN ❤️ MARTIN</h1>
+    <p class="message" id="typing"></p>
+</div>
+
+<script>
+
+/* =========================
+   TYPEWRITER LOVE MESSAGE
+========================= */
+
+const text =
+"Happy Valentine's Day my wife Suzan ❤️.\n" +
+"You are the smile in my mornings, the peace in my heart, " +
+"and the love that makes my world beautiful.\n" +
+"Forever yours — Martin.";
+
+let i = 0;
+function typeWriter(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter,40);
+    }
+}
+typeWriter();
+
+/* =========================
+   MUSIC BEAT SYNC EFFECT
+========================= */
+
+const music = document.getElementById("music");
+
+setInterval(()=>{
+    document.querySelector("h1").style.transform="scale(1.08)";
+    setTimeout(()=>{
+        document.querySelector("h1").style.transform="scale(1)";
+    },300);
+},1200); // gentle beat pulse
+
+/* =========================
+   SPARKLE PARTICLES
+========================= */
+
+function createSparkle(){
+    const sparkle=document.createElement("div");
+    sparkle.classList.add("sparkle");
+
+    sparkle.style.left=Math.random()*100+"vw";
+    sparkle.style.bottom="-10px";
+    sparkle.style.animationDuration=(3+Math.random()*4)+"s";
+
+    document.body.appendChild(sparkle);
+
+    setTimeout(()=>sparkle.remove(),7000);
+}
+
+setInterval(createSparkle,200);
+
+</script>
+
+</body>
+</html>
