@@ -87,24 +87,27 @@ h1{
 
 .firework-text.show{
   opacity:1;
-}
 
-
-/* ===== Fullscreen Romantic Background Slideshow ===== */
+  /* ===== FULLSCREEN SLIDESHOW ===== */
 .slideshow{
     position:fixed;
-    inset:0;
-    z-index:-1;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-2;
 }
 
 .slide{
     position:absolute;
     width:100%;
     height:100%;
-    object-fit:cover;
+    background-size:cover;
+    background-position:center;
     opacity:0;
-    transition:opacity 2s ease-in-out, transform 8s ease-in-out;
-}
+    animation:fadeSlide 25s infinite;
+  }
+  
 
 .slide.active{
     opacity:1;
