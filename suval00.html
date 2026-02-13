@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzan ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
+
+body{
+  min-height:100vh;
+  background:#000;
+  color:white;
+  overflow:hidden;
+  text-align:center;
+}
+
+/* INTRO */
+.intro{
+  position:fixed;
+  inset:0;
+  background:#0b0b12;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:1.5rem;
+  color:#ff9ecf;
+  z-index:1000;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{
+  0%,100%{opacity:.6;}
+  50%{opacity:1;}
+}
+
+.hidden{display:none;}
+
+.container{
+  position:relative;
+  z-index:3;
+  padding:30px 15px;
+}
+
+h1{color:#ff9ecf;margin-bottom:10px;}
+
+.message{
+  max-width:420px;
+  margin:auto;
+  line-height:1.6;
+  white-space:pre-line;
+}
+
+/* FIREWORK TEXT */
+.firework-text{
+  font-size:3rem;
+  opacity:0;
+  transition:1.5s;
+  text-shadow:0 0 15px #ff5fa2,0 0 40px #ff5fa2;
+}
+.firework-text.show{
+  opacity:1;
+  transform:scale(1.1);
+}
+
+/* SLIDESHOW */
+.slideshow{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+}
+.slide{
+  position:absolute;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transition:opacity 2s ease-in-out;
+}
+.slide.active{opacity:1;}
+
+/* SPARKLES */
+.sparkle{
+  position:fixed;
+  width:4px;
+  height:4px;
+  background:white;
+  border-radius:50%;
+  pointer-events:none;
+  animation:spark 1s linear forwards;
+}
+@keyframes spark{
+  to{
+    transform:translateY(-80px) scale(0);
+    opacity:0;
+  }
+}
+
+/* FLOAT HEART */
+.heart{
+  position:fixed;
+  animation:rise linear forwards;
+}
+@keyframes rise{
+  to{transform:translateY(-110vh);opacity:0;}
+}
+
+/* HEART EXPLOSION */
+.explosion{
+  position:fixed;
+  font-size:22px;
+  animation:explode 1.2s ease-out forwards;
+}
+@keyframes explode{
+  to{
+    transform:translate(var(--x),var(--y)) scale(.2);
+    opacity:0;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="intro" id="intro">💌 Tap to Continue 💌</div>
+
+<!-- SLIDESHOW -->
+<div class="slideshow" id="slideshow"></div>
+
+<audio id="bgMusic" loop>
+<source src="valentine.mp3" type="audio/mpeg">
+</audio>
+
+<div class="container hidden" id="mainContent">
+
+<h1>Happy Valentine's Day ❤️</h1>
+
+<div class="firework-text" id="fireText">SUZAN ❤️</div>
+
+<p class="message" id="typedMessage"></p>
+
+</div>
+
+<script>
+
+/* ---------------- PHOTOS ---------------- */
+const images=[
+"IMG19.jpg","IMG20.jpg","IMG21.jpg","IMG32.jpg","IMG5.jpg",
+"172.jpg","174.jpg","178.jpg","181.jpg","IMG29.jpg",
+"su5.jpg","su12.jpg","su13.jpg","su15.jpg","su16.jpg",
+"su17.jpg","su18.jpg","su23.jpg"
+];
+
+const slideshow=document.getElementById("slideshow");
+
+images.forEach((img,i)=>{
+  const div=document.createElement("div");
+  div.className="slide"+(i===0?" active":"");
+  div.style.backgroundImage=`url(${img})`;
+  slideshow.appendChild(div);
+});
+
+const slides=document.querySelectorAll(".slide");
+let currentSlide=0;
+
+/* -------- MUSIC BEAT SYNC (approx BPM) -------- */
+function nextSlide(){
+  slides[currentSlide].classList.remove("active");
+  currentSlide=(currentSlide+1)%slides.length;
+  slides[currentSlide].classList.add("active");
+}
+
+/* change every ~3.5s (romantic beat timing) */
+setInterval(nextSlide,3500);
+
+/* INTRO START */
+const intro=document.getElementById("intro");
+const main=document.getElementById("mainContent");
+const music=document.getElementById("bgMusic");
+const fireText=document.getElementById("fireText");
+
+intro.addEventListener("click",()=>{
+  intro.style.display="none";
+  main.classList.remove("hidden");
+  music.play();
+  startTyping();
+  startHearts();
+  startSparkles();
+  setTimeout(()=>{
+     fireText.classList.add("show");
+     heartExplosion();
+  },5000);
+},{once:true});
+
+/* -------- TYPING -------- */
+const text=`Suzan,
+
+From the moment you came into my life,
+everything became brighter and warmer.
+
+Your smile is my peace,
+your love is my strength.
+
+Forever yours,
+— Martin 💕`;
+
+let i=0;
+function startTyping(){
+ const el=document.getElementById("typedMessage");
+ const timer=setInterval(()=>{
+   el.textContent+=text.charAt(i);
+   i++;
+   if(i>=text.length) clearInterval(timer);
+ },40);
+}
+
+/* -------- FLOAT HEARTS -------- */
+function startHearts(){
+ setInterval(()=>{
+   const h=document.createElement("div");
+   h.className="heart";
+   h.innerHTML="❤️";
+   h.style.left=Math.random()*100+"vw";
+   h.style.fontSize=Math.random()*20+15+"px";
+   h.style.animationDuration=Math.random()*3+4+"s";
+   document.body.appendChild(h);
+   setTimeout(()=>h.remove(),6000);
+ },900);
+}
+
+/* -------- HEART EXPLOSION -------- */
+function heartExplosion(){
+ for(let i=0;i<40;i++){
+   const e=document.createElement("div");
+   e.className="explosion";
+   e.innerHTML="❤️";
+   e.style.left="50%";
+   e.style.top="40%";
+   e.style.setProperty("--x",(Math.random()*400-200)+"px");
+   e.style.setProperty("--y",(Math.random()*400-200)+"px");
+   document.body.appendChild(e);
+   setTimeout(()=>e.remove(),1200);
+ }
+}
+
+/* -------- MUSIC REACTIVE SPARKLES -------- */
+function startSparkles(){
+ setInterval(()=>{
+   for(let i=0;i<8;i++){
+     const s=document.createElement("div");
+     s.className="sparkle";
+     s.style.left=Math.random()*100+"vw";
+     s.style.top=(60+Math.random()*30)+"vh";
+     document.body.appendChild(s);
+     setTimeout(()=>s.remove(),1000);
+   }
+ },250); // beat pulse
+}
+
+</script>
+
+</body>
+</html>
